@@ -1,5 +1,7 @@
 {
+  "jsRules": { "no-console": false },
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "defaultSeverity": "warning",
   "linterOptions": {
     "exclude": [
       "config/**/*.js",

@@ -1,8 +1,25 @@
+import { Consumer } from "@requestnetwork/react-components";
 import * as React from "react";
 import { Route, RouteComponentProps } from "react-router";
 
 const HomeContainer = (props: RouteComponentProps) => {
-  return <h1>Home</h1>;
+  console.info(props);
+  return (
+    <React.Fragment>
+      <Consumer>
+        {requestNetwork => {
+          console.log(requestNetwork);
+          return (
+            <div>
+              <p>{requestNetwork.currentAccount}</p>
+              <p>{requestNetwork.currentNetwork}</p>
+            </div>
+          );
+        }}
+      </Consumer>
+      <h1>Home</h1>;
+    </React.Fragment>
+  );
 };
 
 const EmployerContainer = (props: RouteComponentProps) => {

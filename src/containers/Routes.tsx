@@ -1,26 +1,20 @@
-import { Consumer } from "@requestnetwork/react-components";
 import * as React from "react";
 import { Route, RouteComponentProps } from "react-router";
+import { withRequest, InjectedRequestProps } from "./withRequest";
 
-const HomeContainer = (props: RouteComponentProps) => {
+const HomeContainer = (props: RouteComponentProps & InjectedRequestProps) => {
   console.info(props);
   return (
     <React.Fragment>
-      <Consumer>
-        {requestNetwork => {
-          console.log(requestNetwork);
-          return (
-            <div>
-              <p>{requestNetwork.currentAccount}</p>
-              <p>{requestNetwork.currentNetwork}</p>
-            </div>
-          );
-        }}
-      </Consumer>
-      <h1>Home</h1>;
+      <h1>Home</h1>
+      <div>
+        <p>{props.requestNetworkProps.currentAccount}</p>
+      </div>
     </React.Fragment>
   );
 };
+
+const connectedHomeContainer = withRequest(HomeContainer);
 
 const EmployerContainer = (props: RouteComponentProps) => {
   return <h1>Employer</h1>;
@@ -32,7 +26,7 @@ const EmployeeContainer = (props: RouteComponentProps) => {
 
 export const Main = () => (
   <React.Fragment>
-    <Route exact={true} path="/" render={HomeContainer} />
+    <Route exact={true} path="/" component={connectedHomeContainer} />
     <Route exact={true} path="/employer" render={EmployerContainer} />
     <Route exact={true} path="/employee" render={EmployeeContainer} />
   </React.Fragment>

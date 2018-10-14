@@ -3,30 +3,18 @@ import * as React from "react";
 
 export interface InjectedRequestProps {
   requestNetworkProps: { [key: string]: any };
-  createRequestAsAPayer: () => void;
 }
 
 export const withRequest = <P extends InjectedRequestProps>(
   Component: React.ComponentType<P>
 ) =>
-  class WithRequest extends React.Component<InjectedRequestProps> {
-    // createRequestAsAPayer = (_payeesIdAddress: string[], amount: ) => {
-    //   // this.props.requestNetworkProps.currentAccount;
-    //   // this.props.requestNetworkProps.requestNetwork.requestEthereumService.createRequestAsPayee();
-    // };
-
-    createRequestAsAPayer = () => {};
-
+  class WithRequest extends React.Component<P> {
     render() {
       return (
         <Consumer>
           {requestNetwork => {
             return (
-              <Component
-                {...this.props}
-                requestNetworkProps={requestNetwork}
-                createRequestAsAPayer={this.createRequestAsAPayer}
-              />
+              <Component {...this.props} requestNetworkProps={requestNetwork} />
             );
           }}
         </Consumer>

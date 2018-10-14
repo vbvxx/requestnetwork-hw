@@ -1,24 +1,13 @@
 import * as React from "react";
 import { Route, RouteComponentProps } from "react-router";
-import { withRequest, InjectedRequestProps } from "./withRequest";
+import Home from "./Home";
+import Employer from "./Employer";
 
-const HomeContainer = (props: RouteComponentProps & InjectedRequestProps) => {
-  console.info(props);
-  return (
-    <React.Fragment>
-      <h1>Home</h1>
-      <div>
-        <p>{props.requestNetworkProps.currentAccount}</p>
-      </div>
-    </React.Fragment>
-  );
-};
-
-const connectedHomeContainer = withRequest(HomeContainer);
-
-const EmployerContainer = (props: RouteComponentProps) => {
-  return <h1>Employer</h1>;
-};
+export enum RoutePath {
+  Home = "/",
+  Employer = "/employer",
+  Employee = "/employee"
+}
 
 const EmployeeContainer = (props: RouteComponentProps) => {
   return <h1>Employee</h1>;
@@ -26,8 +15,8 @@ const EmployeeContainer = (props: RouteComponentProps) => {
 
 export const Main = () => (
   <React.Fragment>
-    <Route exact={true} path="/" component={connectedHomeContainer} />
-    <Route exact={true} path="/employer" render={EmployerContainer} />
-    <Route exact={true} path="/employee" render={EmployeeContainer} />
+    <Route exact={true} path={RoutePath.Home} component={Home} />
+    <Route exact={true} path={RoutePath.Employer} component={Employer} />
+    <Route exact={true} path={RoutePath.Employee} render={EmployeeContainer} />
   </React.Fragment>
 );

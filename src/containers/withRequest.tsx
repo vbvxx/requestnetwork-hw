@@ -1,4 +1,6 @@
 import { Consumer } from "@requestnetwork/react-components";
+//@ts-ignore
+import RequestNetwork, { Types } from "@requestnetwork/request-network.js";
 import * as React from "react";
 
 export interface InjectedRequestProps {
@@ -16,23 +18,40 @@ export const withRequest = <P extends InjectedRequestProps>(
   class WithRequest extends React.Component<P, State> {
     private requestNetworkInstance?: any;
 
-    createRequestAsPayer = (onSuccess: (txhash: string) => void) => {
-      this.requestNetworkInstance.requestEthereumService
-        .createRequestAsPayer(
-          ["0x6f179c0B2782932AdC62F871023DC14C1F695d91"],
-          [0.01],
-          undefined,
-          undefined,
-          undefined,
-          JSON.stringify({}),
-          undefined,
-          undefined,
-          { gasPrice: "15000000000" }
-        )
-        .then(({ transaction }: any) => {
-          onSuccess(transaction.hash);
-        });
+    createRequestAsPayer = async (onSuccess: (txhash: string) => void) => {
+      console.log(this.requestNetworkInstance);
+      const { request } = await this.requestNetworkInstance.createRequest(
+        Types.Role.Payer,
+        "ETH",
+        [
+          {
+            idAddress: "0x6f179c0B2782932AdC62F871023DC14C1F695d91",
+            paymentAddress: "0x6f179c0B2782932AdC62F871023DC14C1F695d91",
+            expectedAmount: 2000000000,
+            amountToPayAtCreation: 2000000000
+          }
+        ],
+        {
+          idAddress: "0xdA8fB450D8836E135871008F83369AFe4733e3B8",
+          refundAddress: "0xdA8fB450D8836E135871008F83369AFe4733e3B8"
+        }
+      );
+      console.log(request);
     };
+    // .createRequestAsPayer(
+    //   ["0x6f179c0B2782932AdC62F871023DC14C1F695d91"],
+    //   [0.01],
+    //   undefined,
+    //   undefined,
+    //   undefined,
+    //   JSON.stringify({}),
+    //   undefined,
+    //   undefined,
+    //   { gasPrice: "15000000000" }
+    // )
+    // .then(({ transaction }: any) => {
+    //   onSuccess(transaction.hash);
+    // });
 
     render() {
       return (

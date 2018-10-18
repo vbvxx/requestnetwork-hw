@@ -1,12 +1,5 @@
 import * as React from "react";
-// import {
-//   TextField,
-//   Button,
-//   FormControl,
-//   FormLabel,
-//   createStyles
-// } from "@material-ui/core";
-import EmployerForm from "./test";
+import EmployerForm, { FormValues } from "./EmployerForm";
 
 interface OwnProps {
   onSubmit: (address: string, amount: number) => void;
@@ -28,9 +21,10 @@ class CreatePayslip extends React.Component<Props, State> {
     };
   }
 
-  onSubmit = () => {
+  onSubmit = (values: FormValues) => {
+    // this.props.onSubmit("", 0);
     console.log("here");
-    this.props.onSubmit("", 0);
+    console.log(values);
   };
 
   handleAddressChange = (event: any) => {
@@ -38,29 +32,7 @@ class CreatePayslip extends React.Component<Props, State> {
   };
 
   render() {
-    return (
-      // <FormControl component="fieldset" style={styles.root}>
-      //   <FormLabel component="legend" style={styles.label}>
-      //     Please enter the wallet address of your employee
-      //   </FormLabel>
-      //   <TextField
-      //     label="Address ethereum"
-      //     value={this.state.address}
-      //     onChange={this.handleAddressChange}
-      //     style={styles.label}
-      //   />
-      //   <Button
-      //     variant="outlined"
-      //     color="primary"
-      //     type="submit"
-      //     style={styles.button}
-      //     onClick={this.onSubmit}
-      //   >
-      //     Create transaction
-      //   </Button>
-      // </FormControl>
-      <EmployerForm />
-    );
+    return <EmployerForm onSubmit={this.onSubmit} />;
   }
 }
 

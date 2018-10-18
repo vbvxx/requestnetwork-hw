@@ -2,8 +2,8 @@ import * as React from "react";
 import { withRequest, InjectedRequestProps } from "../withRequest";
 import { RouteComponentProps } from "react-router";
 import { Success } from "./Success";
-import CreatePayslip from "./CreatePayslip";
 import { Title } from "src/components/Theme";
+import EmployerForm, { FormValues } from "./EmployerForm";
 
 interface OwmProps {
   routeProps: RouteComponentProps;
@@ -24,10 +24,10 @@ class Employer extends React.Component<Props, State> {
     };
   }
 
-  onTransactionSubmit = (address: string, amount: number) => {
-    console.log(address, amount);
-    this.setState({ transactionHash: undefined, isFetching: true });
-    this.props.createRequestAsPayer(this.onTransactionSuccess);
+  onTransactionSubmit = (values: FormValues) => {
+    console.log(values);
+    // this.setState({ transactionHash: undefined, isFetching: true });
+    // this.props.createRequestAsPayer(this.onTransactionSuccess);
     // .then((transactionHash: string) => {
     // });
   };
@@ -44,7 +44,7 @@ class Employer extends React.Component<Props, State> {
         <p>{`You are currently connected with: ${
           this.props.requestNetworkProps.currentAccount
         }`}</p>
-        <CreatePayslip onSubmit={this.onTransactionSubmit} />
+        <EmployerForm onSubmit={this.onTransactionSubmit} />
         {isFetching && <p>Loading</p>}
         {transactionHash !== undefined && <Success txHash={transactionHash} />}
       </div>

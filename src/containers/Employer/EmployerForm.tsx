@@ -6,21 +6,18 @@ import * as Web3 from "web3";
 // import { createStyles } from "@material-ui/core";
 import { Form, Input, Button, Label, Text } from "../../components/Theme";
 
-interface FormValues {
+export interface FormValues {
   address: string;
   amount: string;
 }
 
 interface FormProps {
-  address?: string;
-  amount?: string;
+  onSubmit: (values: FormValues) => void;
 }
 
 const InnerForm: React.SFC<
   InjectedFormikProps<FormProps, FormValues>
 > = props => {
-  console.log(props);
-
   return (
     <Form onSubmit={props.handleSubmit}>
       <Label>
@@ -80,10 +77,11 @@ const EmployerForm = withFormik<FormProps, FormValues>({
       return !Number.isNaN(+value);
     })
   }),
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, bag) => {
     setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
+      // alert(JSON.stringify(values, null, 2));
+      bag.props.onSubmit(values);
+      bag.setSubmitting(false);
     }, 1000);
   }
 })(InnerForm);

@@ -3,6 +3,7 @@ import { withRequest, InjectedRequestProps } from "../withRequest";
 import { RouteComponentProps } from "react-router";
 import { Success } from "./Success";
 import CreatePayslip from "./CreatePayslip";
+import { Title } from "src/components/Theme";
 
 interface OwmProps {
   routeProps: RouteComponentProps;
@@ -39,7 +40,7 @@ class Employer extends React.Component<Props, State> {
     const { transactionHash, isFetching } = this.state;
     return (
       <div style={styles.container}>
-        <h1>Employer</h1>
+        <Title>Employer</Title>
         <p>{`You are currently connected with: ${
           this.props.requestNetworkProps.currentAccount
         }`}</p>
@@ -60,7 +61,6 @@ const styles: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "green"
+    justifyContent: "center"
   }
 };

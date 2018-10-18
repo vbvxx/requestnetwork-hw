@@ -4,6 +4,7 @@ import * as Yup from "yup";
 //@ts-ignore
 import * as Web3 from "web3";
 import { createStyles } from "@material-ui/core";
+import { Form, Input, Button } from "../../components/Theme";
 
 interface FormValues {
   address: string;
@@ -18,18 +19,19 @@ interface FormProps {
 const InnerForm: React.SFC<
   InjectedFormikProps<FormProps, FormValues>
 > = props => (
-  <form onSubmit={props.handleSubmit} style={styles.root}>
-    <input
+  <Form onSubmit={props.handleSubmit} style={styles.root}>
+    <Input
       id="address"
-      placeholder=" Employee Ethereum address"
+      placeholder="Employee Ethereum address"
       type="text"
       onChange={props.handleChange}
       value={props.values.address}
       style={styles.textInput}
+      border={props.errors.address && "1px solid red"}
     />
     {props.touched.address &&
       props.errors.address && <div>{props.errors.address}</div>}
-    <input
+    <Input
       id="amount"
       placeholder="Amount"
       type="text"
@@ -39,10 +41,10 @@ const InnerForm: React.SFC<
     />
     {props.touched.amount &&
       props.errors.amount && <div>{props.errors.amount}</div>}
-    <button type="submit" disabled={props.isSubmitting}>
+    <Button type="submit" disabled={props.isSubmitting}>
       Submit
-    </button>
-  </form>
+    </Button>
+  </Form>
 );
 
 const EmployerForm = withFormik<FormProps, FormValues>({
@@ -71,7 +73,6 @@ const styles = createStyles({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "red",
     minWidth: 340
   },
   label: {
@@ -79,8 +80,7 @@ const styles = createStyles({
     marginBottom: 20
   },
   textInput: {
-    marginBottom: 20,
-    minWidth: 300
+    marginBottom: 20
   },
   button: {
     margin: 0

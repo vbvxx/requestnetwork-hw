@@ -1,5 +1,4 @@
-
-import styled from 'styled-components';
+import styled, { StyledFunction } from "styled-components";
 
 // Forms, inputs, buttons
 
@@ -10,10 +9,17 @@ export const Form = styled.form`
   align-items: center;
 `;
 
-export const Input = styled.input`
+interface AdditionalProps {
+  border?: string;
+}
+const input: StyledFunction<
+  AdditionalProps & React.HTMLProps<HTMLInputElement>
+> = styled.input;
+
+export const Input = input`
   width: 300px;
   height: 35px;
-  border: 1px solid #ccc;
+  border: ${props => (props as any).border || "1px solid #ccc"};
   background-color: #fff;
 `;
 
@@ -28,22 +34,20 @@ export const Button = styled.button`
 // Text
 
 export const Title = styled.h1`
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 600;
   color: #4d4d4d;
   font-size: 2.2em;
 `;
 
 export const Title2 = styled.h2`
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 300;
   color: #4d4d4d;
   font-size: 1.8em;
 `;
 
 export const Text = styled.p`
-  font-family: 'Raleway', sans-serif;
-  color: ${props => props.color || '#4d4d4d'}
+  font-family: "Raleway", sans-serif;
+  color: ${props => props.color || "#4d4d4d"};
 `;
-
-view rawtheme.js hosted with ❤ by GitHub

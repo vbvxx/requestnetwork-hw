@@ -14,6 +14,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "3.1.0",
     "utility-types": "^2.1.0",
+    "web3": "^1.0.0-beta.36",
     "yup": "^0.26.6"
   },
   "scripts": {

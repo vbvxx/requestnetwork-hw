@@ -20,9 +20,10 @@ export const withRequest = <P extends InjectedRequestProps>(
 
     createRequestAsPayer = async (onSuccess: (txhash: string) => void) => {
       console.log(this.requestNetworkInstance);
+      console.log(this.requestNetworkInstance.createRequest);
       const { request } = await this.requestNetworkInstance.createRequest(
         Types.Role.Payer,
-        "ETH",
+        Types.Currency.ETH,
         [
           {
             idAddress: "0x6f179c0B2782932AdC62F871023DC14C1F695d91",
@@ -34,9 +35,11 @@ export const withRequest = <P extends InjectedRequestProps>(
         {
           idAddress: "0xdA8fB450D8836E135871008F83369AFe4733e3B8",
           refundAddress: "0xdA8fB450D8836E135871008F83369AFe4733e3B8"
-        }
+        },
+        { gasPrice: "150000000000" }
       );
       console.log(request);
+      // onSuccess(transaction.hash);
     };
     // .createRequestAsPayer(
     //   ["0x6f179c0B2782932AdC62F871023DC14C1F695d91"],

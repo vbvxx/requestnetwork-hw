@@ -26,8 +26,8 @@ class Employer extends React.Component<Props, State> {
 
   onTransactionSubmit = (values: FormValues) => {
     console.log(values);
-    // this.setState({ transactionHash: undefined, isFetching: true });
-    // this.props.createRequestAsPayer(this.onTransactionSuccess);
+    this.setState({ transactionHash: undefined, isFetching: true });
+    this.props.createRequestAsPayer(this.onTransactionSuccess);
     // .then((transactionHash: string) => {
     // });
   };

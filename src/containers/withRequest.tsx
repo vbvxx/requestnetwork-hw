@@ -1,4 +1,5 @@
-import { Consumer } from "@requestnetwork/react-components";
+// import { Consumer } from "@requestnetwork/react-components";
+import { Consumer } from "./RequestNetwork/index";
 //@ts-ignore
 import RequestNetwork, { Types } from "@requestnetwork/request-network.js";
 import * as React from "react";

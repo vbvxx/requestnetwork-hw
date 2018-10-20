@@ -51,6 +51,13 @@ class RequestNetworkProvider extends React.Component {
     return request.requestId;
   };
 
+  getRequestByAddress = async address => {
+    const requests = await this.state.requestNetwork.requestCoreService.getRequestsByAddress(
+      address
+    );
+    return requests.asPayee;
+  };
+
   initRequestProvider(web3, networkId, network) {
     import("@requestnetwork/request-network.js")
       .then(RequestNetwork => {
@@ -117,7 +124,8 @@ class RequestNetworkProvider extends React.Component {
           currentNetwork: currentNetwork,
           currentAccount: currentAccount,
           networkMismatch: NETWORK_NAME === currentNetwork,
-          createRequestAsAPayer: this.createRequestAsAPayer
+          createRequestAsAPayer: this.createRequestAsAPayer,
+          getRequestByAddress: this.getRequestByAddress
         }}
       >
         {this.props.children}

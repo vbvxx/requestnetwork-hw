@@ -1,4 +1,6 @@
 import * as React from "react";
+import { IEvent } from ".";
+
 interface IProps {
   onInit: () => void;
 }
@@ -8,7 +10,11 @@ export declare class RequestNetworkProvider extends React.Component<IProps> {
     currentAccount: string;
     currentNetwork: string;
     isReady: boolean;
-    createRequestAsAPayer(paymentAddress: string, amount: string): Promise<any>;
+    createRequestAsAPayer(
+      paymentAddress: string,
+      amount: string
+    ): Promise<string>;
+    getRequestByAddress(address: string): Promise<IEvent[]>;
   };
   private initRequestProvider;
   initWeb3(): Promise<void>;

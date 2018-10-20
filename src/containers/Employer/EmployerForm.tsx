@@ -3,8 +3,11 @@ import * as React from "react";
 import * as Yup from "yup";
 //@ts-ignore
 import * as Web3 from "web3";
-// import { createStyles } from "@material-ui/core";
-import { Form, Input, Button, Label, Text } from "../../components/Theme";
+import { FormContainer } from "src/components/FormContainer";
+import { FormLabel } from "src/components/FormLabel";
+import { Input } from "src/components/Input";
+import { Text } from "src/components/Text";
+import { FormButton } from "src/components/FormButton";
 
 export interface FormValues {
   address: string;
@@ -19,8 +22,9 @@ const InnerForm: React.SFC<
   InjectedFormikProps<FormProps, FormValues>
 > = props => {
   return (
-    <Form onSubmit={props.handleSubmit}>
-      <Label>
+    <FormContainer onSubmit={props.handleSubmit}>
+      <FormLabel>Create a pay slip</FormLabel>
+      <FormLabel>
         <Input
           id="address"
           placeholder="Employee Ethereum address"
@@ -37,8 +41,8 @@ const InnerForm: React.SFC<
           props.errors.address && (
             <Text color="red">{props.errors.address}</Text>
           )}
-      </Label>
-      <Label>
+      </FormLabel>
+      <FormLabel>
         <Input
           id="amount"
           placeholder="Amount"
@@ -53,11 +57,11 @@ const InnerForm: React.SFC<
         />
         {props.touched.amount &&
           props.errors.amount && <Text color="red">{props.errors.amount}</Text>}
-      </Label>
-      <Button type="submit" disabled={props.isSubmitting}>
+      </FormLabel>
+      <FormButton type="submit" disabled={props.isSubmitting}>
         Submit
-      </Button>
-    </Form>
+      </FormButton>
+    </FormContainer>
   );
 };
 
@@ -84,25 +88,5 @@ const EmployerForm = withFormik<FormProps, FormValues>({
     }, 1000);
   }
 })(InnerForm);
-
-// const styles = createStyles({
-// root: {
-//   // display: "flex",
-//   // flexDirection: "column",
-//   // justifyContent: "flex-start",
-//   // alignItems: "center",
-//   minWidth: 340
-// },
-// label: {
-//   marginTop: 40,
-//   marginBottom: 20
-// },
-// textInput: {
-//   marginBottom: 20
-// },
-// button: {
-//   margin: 0
-// }
-// });
 
 export default EmployerForm;

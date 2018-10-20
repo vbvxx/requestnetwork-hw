@@ -2,52 +2,23 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import { ButtonLink } from "src/components/ButtonLink";
 import { RoutePath } from "../Routes";
+import { ColumnCenter } from "src/components/ColumnCenter";
+import { PageTitle } from "src/components/PageTitle";
+import { RowCenter } from "src/components/RowCenter";
 
-interface OwmProps {
+interface OwnProps {
   routeProps: RouteComponentProps;
 }
+type Props = OwnProps;
 
-interface State {
-  transactionHash?: string;
-}
-type Props = OwmProps;
-
-class Home extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      transactionHash: undefined
-    };
-  }
-
-  render() {
-    return (
-      <div style={styles.container}>
-        <h1>Welcome</h1>
-        <div style={styles.buttonsContainer}>
-          <ButtonLink path={RoutePath.Employer} name="Employer" />
-          <ButtonLink path={RoutePath.Employee} name="Employee" />
-        </div>
-      </div>
-    );
-  }
-}
+const Home: React.SFC<Props> = props => (
+  <ColumnCenter>
+    <PageTitle>Welcome</PageTitle>
+    <RowCenter>
+      <ButtonLink path={RoutePath.Employer} name="Employer" />
+      <ButtonLink path={RoutePath.Employee} name="Employee" />
+    </RowCenter>
+  </ColumnCenter>
+);
 
 export default Home;
-
-const styles: {
-  container: React.CSSProperties;
-  buttonsContainer: React.CSSProperties;
-} = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  buttonsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-};

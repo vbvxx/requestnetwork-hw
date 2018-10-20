@@ -6,7 +6,7 @@ export interface RequestContextValues {
   networkMismatch: boolean;
   currentNetwork: string;
   currentAccount: string;
-  createRequestAsAPayer(paymentAddress: string, amount: string): Promise<any>;
+  createRequestAsAPayer(paymentAddress: string, amount: string): string;
 }
 export declare const Provider: React.ComponentType<
     React.ProviderProps<RequestContextValues>

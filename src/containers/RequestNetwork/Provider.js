@@ -30,7 +30,6 @@ class RequestNetworkProvider extends React.Component {
   };
 
   createRequestAsAPayer = async (paymentAddress, amount) => {
-    console.log(paymentAddress, amount);
     const amountWei = Web3.utils.toWei(amount);
     const { request } = await this.state.requestNetwork.createRequest(
       Types.Role.Payer,
@@ -49,11 +48,10 @@ class RequestNetworkProvider extends React.Component {
       },
       { gasPrice: "300000000000000" }
     );
-    return request;
+    return request.requestId;
   };
 
   initRequestProvider(web3, networkId, network) {
-    console.log("here init request provider");
     import("@requestnetwork/request-network.js")
       .then(RequestNetwork => {
         return this.setState({
@@ -97,6 +95,7 @@ class RequestNetworkProvider extends React.Component {
 
   componentDidMount() {
     this.initWeb3();
+    this.fetchAccounts();
   }
 
   componentDidUpdate({ onInit }, prevState) {

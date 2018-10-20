@@ -63,10 +63,7 @@ const EmployeeForm = withFormik<FormProps, EmployeeFormValues>({
     )
   }),
   handleSubmit: (values, bag) => {
-    setTimeout(() => {
-      bag.props.onSubmit(values);
-      bag.setSubmitting(false);
-    }, 1000);
+    bag.props.onSubmit(values);
   }
 })(InnerForm);
 

@@ -8,7 +8,7 @@ import {
   withRequest
 } from "../RequestNetwork/withRequest";
 import { IEvent } from "../RequestNetwork";
-import { Loader } from "src/components/Loader";
+import ResultsTable from "./ResultsTable";
 
 interface OwnProps {
   routeProps: RouteComponentProps;
@@ -31,12 +31,12 @@ class Employee extends React.Component<Props, State> {
   };
 
   render() {
-    const { isFetching } = this.state;
+    const { isFetching, requestsArray } = this.state;
     return (
       <ColumnCenter>
         <PageTitle>Employee</PageTitle>
         <EmployeeForm onSubmit={this.onSubmit} />
-        {isFetching && <Loader />}
+        <ResultsTable requestsArray={requestsArray} isFetching={isFetching} />
       </ColumnCenter>
     );
   }

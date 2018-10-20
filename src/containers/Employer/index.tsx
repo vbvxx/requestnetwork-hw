@@ -1,11 +1,14 @@
 import * as React from "react";
-import { withRequest, InjectedRequestProps } from "../withRequest";
+import {
+  withRequest,
+  InjectedRequestProps
+} from "../RequestNetwork/withRequest";
 import { RouteComponentProps } from "react-router";
 import { Success } from "./Success";
 import { Title } from "src/components/Theme";
 import EmployerForm, { FormValues } from "./EmployerForm";
 
-interface OwmProps {
+interface OwnProps {
   routeProps: RouteComponentProps;
 }
 
@@ -13,7 +16,7 @@ interface State {
   transactionHash?: string;
   isFetching: boolean;
 }
-type Props = OwmProps & InjectedRequestProps;
+type Props = OwnProps & InjectedRequestProps;
 
 class Employer extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -24,10 +27,13 @@ class Employer extends React.Component<Props, State> {
     };
   }
 
-  onTransactionSubmit = (values: FormValues) => {
+  onTransactionSubmit = async (values: FormValues) => {
     console.log(values);
+    const { createRequestAsAPayer } = this.props.requestProps;
     this.setState({ transactionHash: undefined, isFetching: true });
-    this.props.createRequestAsPayer(this.onTransactionSuccess);
+    const request = await createRequestAsAPayer(values.address, values.amount);
+    console.log(request);
+    // this.props.createRequestAsPayer(this.onTransactionSuccess);
     // .then((transactionHash: string) => {
     // });
   };
@@ -41,9 +47,7 @@ class Employer extends React.Component<Props, State> {
     return (
       <div style={styles.container}>
         <Title>Employer</Title>
-        <p>{`You are currently connected with: ${
-          this.props.requestNetworkProps.currentAccount
-        }`}</p>
+        <p>{`You are currently connected with: ${isFetching}`}</p>
         <EmployerForm onSubmit={this.onTransactionSubmit} />
         {isFetching && <p>Loading</p>}
         {transactionHash !== undefined && <Success txHash={transactionHash} />}

@@ -1,14 +1,15 @@
 import * as React from "react";
 import RequestNetworkProvider from "./Provider";
-interface ContextValues {
+export interface RequestContextValues {
   requestNetwork: any;
   isReady: boolean;
   networkMismatch: boolean;
   currentNetwork: string;
   currentAccount: string;
+  createRequestAsAPayer(paymentAddress: string, amount: string): Promise<any>;
 }
 export declare const Provider: React.ComponentType<
-    React.ProviderProps<ContextValues>
+    React.ProviderProps<RequestContextValues>
   >,
-  Consumer: React.ComponentType<React.ConsumerProps<ContextValues>>;
+  Consumer: React.ComponentType<React.ConsumerProps<RequestContextValues>>;
 export default RequestNetworkProvider;

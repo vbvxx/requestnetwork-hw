@@ -8,6 +8,7 @@ export declare class RequestNetworkProvider extends React.Component<IProps> {
     currentAccount: string;
     currentNetwork: string;
     isReady: boolean;
+    createRequestAsAPayer(paymentAddress: string, amount: string): Promise<any>;
   };
   private initRequestProvider;
   initWeb3(): Promise<void>;

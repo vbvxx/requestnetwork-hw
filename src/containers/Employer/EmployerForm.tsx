@@ -79,7 +79,6 @@ const EmployerForm = withFormik<FormProps, FormValues>({
   }),
   handleSubmit: (values, bag) => {
     setTimeout(() => {
-      // alert(JSON.stringify(values, null, 2));
       bag.props.onSubmit(values);
       bag.setSubmitting(false);
     }, 1000);

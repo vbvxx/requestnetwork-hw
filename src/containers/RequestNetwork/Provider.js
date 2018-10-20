@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Provider } from ".";
 import { request } from "http";
-const Web3 = require("web3");
+import * as Web3 from "web3";
+import RequestNetwork, { Types } from "@requestnetwork/request-network.js";
 
 const getNetwork = networkName => {
   switch (networkName) {
@@ -26,6 +27,29 @@ class RequestNetworkProvider extends React.Component {
   state = {
     requestNetwork: undefined,
     currentAccount: ""
+  };
+
+  createRequestAsAPayer = async (paymentAddress, amount) => {
+    console.log(paymentAddress, amount);
+    const amountWei = Web3.utils.toWei(amount);
+    const { request } = await this.state.requestNetwork.createRequest(
+      Types.Role.Payer,
+      Types.Currency.ETH,
+      [
+        {
+          idAddress: paymentAddress,
+          paymentAddress: paymentAddress,
+          expectedAmount: amountWei,
+          amountToPayAtCreation: amountWei
+        }
+      ],
+      {
+        idAddress: this.state.currentAccount,
+        refundAddress: this.state.currentAccount
+      },
+      { gasPrice: "300000000000000" }
+    );
+    return request;
   };
 
   initRequestProvider(web3, networkId, network) {
@@ -93,7 +117,8 @@ class RequestNetworkProvider extends React.Component {
           isReady: true,
           currentNetwork: currentNetwork,
           currentAccount: currentAccount,
-          networkMismatch: NETWORK_NAME === currentNetwork
+          networkMismatch: NETWORK_NAME === currentNetwork,
+          createRequestAsAPayer: this.createRequestAsAPayer
         }}
       >
         {this.props.children}

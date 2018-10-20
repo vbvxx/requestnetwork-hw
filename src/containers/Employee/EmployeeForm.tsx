@@ -8,6 +8,7 @@ import { FormLabel } from "src/components/FormLabel";
 import { Input } from "src/components/Input";
 import { Text } from "src/components/Text";
 import { FormButton } from "src/components/FormButton";
+import { Paper } from "@material-ui/core";
 
 export interface EmployeeFormValues {
   address: string;
@@ -21,30 +22,32 @@ const InnerForm: React.SFC<
   InjectedFormikProps<FormProps, EmployeeFormValues>
 > = props => {
   return (
-    <FormContainer onSubmit={props.handleSubmit}>
-      <FormLabel>Check my payslips</FormLabel>
-      <FormLabel>
-        <Input
-          id="address"
-          placeholder="Your Ethereum address"
-          type="text"
-          onChange={props.handleChange}
-          value={props.values.address}
-          border={
-            props.touched.address
-              ? props.errors.address && "1px solid red"
-              : undefined
-          }
-        />
-        {props.touched.address &&
-          props.errors.address && (
-            <Text color="red">{props.errors.address}</Text>
-          )}
-      </FormLabel>
-      <FormButton type="submit" disabled={props.isSubmitting}>
-        Submit
-      </FormButton>
-    </FormContainer>
+    <Paper style={{ padding: 20 }}>
+      <FormContainer onSubmit={props.handleSubmit}>
+        <FormLabel>Check my payslips</FormLabel>
+        <FormLabel>
+          <Input
+            id="address"
+            placeholder="Your Ethereum address"
+            type="text"
+            onChange={props.handleChange}
+            value={props.values.address}
+            border={
+              props.touched.address
+                ? props.errors.address && "1px solid red"
+                : undefined
+            }
+          />
+          {props.touched.address &&
+            props.errors.address && (
+              <Text color="red">{props.errors.address}</Text>
+            )}
+        </FormLabel>
+        <FormButton type="submit" disabled={props.isSubmitting}>
+          Submit
+        </FormButton>
+      </FormContainer>
+    </Paper>
   );
 };
 

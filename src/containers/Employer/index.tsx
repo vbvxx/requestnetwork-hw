@@ -4,9 +4,7 @@ import {
   InjectedRequestProps
 } from "../RequestNetwork/withRequest";
 import { RouteComponentProps } from "react-router";
-import { Success } from "./Success";
 import EmployerForm, { FormValues } from "./EmployerForm";
-import { Loader } from "src/components/Loader";
 import styled from "styled-components";
 import { Row } from "src/components/Row";
 import { TransactionInfo } from "./TransactionInfo";
@@ -50,14 +48,12 @@ class Employer extends React.Component<Props, State> {
   };
 
   render() {
-    const { requestId, requestPending } = this.state;
+    const { requestPending, requestId } = this.state;
     return (
-      <ColumnCenter>
-        <PageTitle>Employer</PageTitle>
+      <EmployerContainer>
         <EmployerForm onSubmit={this.onTransactionSubmit} />
-        {requestPending && <Loader />}
-        {requestId !== undefined && <Success requestId={requestId} />}
-      </ColumnCenter>
+        <TransactionInfo inProgress={requestPending} requestId={requestId} />
+      </EmployerContainer>
     );
   }
 }

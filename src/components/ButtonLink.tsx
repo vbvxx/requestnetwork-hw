@@ -2,7 +2,13 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
-export const ButtonLink = ({ path, name }: { path: string; name: string }) => {
+export const OutlinedButtonLink = ({
+  path,
+  name
+}: {
+  path: string;
+  name: string;
+}) => {
   return (
     <Button
       component={({ innerRef, ...props }) => <Link {...props} to={path} />}

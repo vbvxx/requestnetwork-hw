@@ -1,3 +1,5 @@
+import { RoutePath } from "./Routes";
+
 export const toTitleCase = (element: string): string => {
   return element
     .split(" ")
@@ -7,4 +9,15 @@ export const toTitleCase = (element: string): string => {
 
 export const pathToTitle = (element: string): string => {
   return toTitleCase(element.replace("/", ""));
+};
+
+export const routePathToTitle = (route: RoutePath): string => {
+  switch (route) {
+    case RoutePath.Home:
+      return "Home";
+    case RoutePath.Employer:
+      return "Employer";
+    case RoutePath.Employee:
+      return "Employee";
+  }
 };

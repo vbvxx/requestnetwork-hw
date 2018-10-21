@@ -3,7 +3,7 @@ import { Route } from "react-router";
 import Home from "./Home";
 import Employer from "./Employer";
 import Employee from "./Employee";
-import AppBar from "./AppBar";
+import AppBar from "./AppBar/AppBar";
 
 export enum RoutePath {
   Home = "/",

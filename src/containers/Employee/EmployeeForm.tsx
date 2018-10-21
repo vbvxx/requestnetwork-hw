@@ -7,7 +7,7 @@ import { FormContainer } from "src/components/FormContainer";
 import { FormLabel } from "src/components/FormLabel";
 import { Input } from "src/components/Input";
 import { Text } from "src/components/Text";
-import { FormButton } from "src/components/FormButton";
+import { FormRaisedButton } from "src/components/FormButton";
 import { Paper } from "@material-ui/core";
 
 export interface EmployeeFormValues {
@@ -15,14 +15,14 @@ export interface EmployeeFormValues {
 }
 
 interface FormProps {
-  onSubmit: (values: EmployeeFormValues) => void;
+  onSubmit: (values: EmployeeFormValues) => Promise<void>;
 }
 
 const InnerForm: React.SFC<
   InjectedFormikProps<FormProps, EmployeeFormValues>
 > = props => {
   return (
-    <Paper style={{ padding: 20 }}>
+    <Paper style={{ padding: "20px" }}>
       <FormContainer onSubmit={props.handleSubmit}>
         <FormLabel>Check my payslips</FormLabel>
         <FormLabel>
@@ -43,16 +43,16 @@ const InnerForm: React.SFC<
               <Text color="red">{props.errors.address}</Text>
             )}
         </FormLabel>
-        <FormButton type="submit" disabled={props.isSubmitting}>
+        <FormRaisedButton type="submit" disabled={props.isSubmitting}>
           Submit
-        </FormButton>
+        </FormRaisedButton>
       </FormContainer>
     </Paper>
   );
 };
 
 const EmployeeForm = withFormik<FormProps, EmployeeFormValues>({
-  mapPropsToValues: () => ({ address: "", amount: "" }),
+  mapPropsToValues: () => ({ address: "" }),
   validationSchema: Yup.object().shape({
     address: Yup.string().test(
       "ethreumValidAddress",
@@ -63,7 +63,10 @@ const EmployeeForm = withFormik<FormProps, EmployeeFormValues>({
     )
   }),
   handleSubmit: (values, bag) => {
-    bag.props.onSubmit(values);
+    bag.props.onSubmit(values).then(() => {
+      bag.setSubmitting(false);
+      bag.resetForm({ address: "" });
+    });
   }
 })(InnerForm);
 

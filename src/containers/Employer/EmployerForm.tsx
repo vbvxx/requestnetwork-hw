@@ -7,7 +7,7 @@ import { FormContainer } from "src/components/FormContainer";
 import { FormLabel } from "src/components/FormLabel";
 import { Input } from "src/components/Input";
 import { Text } from "src/components/Text";
-import { FormButton } from "src/components/FormButton";
+import { FormRaisedButton } from "src/components/FormButton";
 import { Paper } from "@material-ui/core";
 
 export interface FormValues {
@@ -62,9 +62,9 @@ const InnerForm: React.SFC<
               <Text color="red">{props.errors.amount}</Text>
             )}
         </FormLabel>
-        <FormButton type="submit" disabled={props.isSubmitting}>
+        <FormRaisedButton type="submit" disabled={props.isSubmitting}>
           Submit
-        </FormButton>
+        </FormRaisedButton>
       </FormContainer>
     </Paper>
   );

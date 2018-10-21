@@ -1,7 +1,7 @@
 import styled, { StyledFunction } from "styled-components";
 
 interface AdditionalProps {
-  color: string;
+  color?: string;
 }
 const p: StyledFunction<
   AdditionalProps & React.HTMLProps<HTMLParagraphElement>
@@ -9,5 +9,5 @@ const p: StyledFunction<
 
 export const Text = p`
   font-family: "Raleway", sans-serif;
-  color: ${props => props.color || "#4d4d4d"};
+  color: ${props => props.color || "#777"};
 `;

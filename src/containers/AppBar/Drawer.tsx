@@ -10,11 +10,15 @@ import {
 import { DrawerLabel } from "src/components/DrawerLabel";
 import { routePathToTitle } from "../ContainerUtils";
 import { RoutePath } from "../Routes";
-import { Link } from "react-router-dom";
+import { ButtonLink } from "src/components/ButtonLink";
 
 const styles = createStyles({
   list: {
-    width: 250
+    width: 250,
+    padding: 0
+  },
+  listItem: {
+    padding: 0
   }
 });
 
@@ -26,20 +30,18 @@ interface OwnProps {
 type Props = OwnProps & WithStyles<typeof styles>;
 
 class SwipeableTemporaryDrawer extends React.Component<Props> {
+  onOpen = () => {};
+
   render() {
     const { classes } = this.props;
 
     const navigationList = (
       <List className={classes.list}>
         {[RoutePath.Home, RoutePath.Employer, RoutePath.Employee].map(path => (
-          <ListItem
-            component={({ innerRef, ...props }) => (
-              <Link {...props} to={path} />
-            )}
-            key={path}
-            onClick={this.props.onClose}
-          >
-            <DrawerLabel text={routePathToTitle(path)} />
+          <ListItem key={path} className={classes.listItem}>
+            <ButtonLink path={path} onClick={this.props.onClose}>
+              <DrawerLabel text={routePathToTitle(path)} />
+            </ButtonLink>
           </ListItem>
         ))}
       </List>
@@ -50,9 +52,7 @@ class SwipeableTemporaryDrawer extends React.Component<Props> {
         <SwipeableDrawer
           open={this.props.open}
           onClose={this.props.onClose}
-          onOpen={() => {
-            console.log("ON OPEN");
-          }}
+          onOpen={this.onOpen}
         >
           {navigationList}
         </SwipeableDrawer>

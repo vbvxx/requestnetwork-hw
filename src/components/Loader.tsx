@@ -10,7 +10,7 @@ const CenterMargin = styled(ColumnCenter)`
 export const Loader = ({ size }: { size?: number }) => {
   return (
     <CenterMargin>
-      <CircularProgress size={size ? size : 70} />
+      <CircularProgress size={size ? size : 60} />
     </CenterMargin>
   );
 };

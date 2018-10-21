@@ -22,6 +22,7 @@ interface OwnProps {
 }
 type Props = OwnProps & InjectedRequestProps;
 interface State {
+  errorMsg?: string;
   requestsArray: IEvent[];
   isFetching: boolean;
 }
@@ -30,15 +31,23 @@ class Employee extends React.Component<Props, State> {
   state = { requestsArray: [], isFetching: false };
 
   onSubmit = async (values: EmployeeFormValues) => {
-    this.setState({ isFetching: true });
-    const requestsArray = await this.props.requestProps.getRequestByAddress(
-      values.address
-    );
-    this.setState({ requestsArray: requestsArray, isFetching: false });
+    this.setState({ isFetching: true, errorMsg: undefined, requestsArray: [] });
+    try {
+      const requestsArray = await this.props.requestProps.getRequestByAddress(
+        values.address
+      );
+      this.setState({
+        requestsArray: requestsArray as IEvent[],
+        isFetching: false
+      });
+    } catch (err) {
+      const errorMsg = `The following error happened ${err}`;
+      this.setState({ isFetching: false, errorMsg: errorMsg });
+    }
   };
 
   render() {
-    const { isFetching, requestsArray } = this.state;
+    const { requestsArray, isFetching } = this.state;
     return (
       <EmployeeContainer>
         <EmployeeForm onSubmit={this.onSubmit} />

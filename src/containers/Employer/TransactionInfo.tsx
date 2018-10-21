@@ -5,11 +5,12 @@ import { Paper } from "@material-ui/core";
 import { Label } from "src/components/Label";
 import styled from "styled-components";
 import { Column } from "src/components/Column";
+import { Error } from "src/components/Error";
 
 interface Props {
   inProgress: boolean;
   requestId?: string;
-  failureMessage?: string;
+  errorMsg?: string;
 }
 
 const CenteredLabel = styled(Label)`
@@ -17,14 +18,16 @@ const CenteredLabel = styled(Label)`
 `;
 
 export const TransactionInfo: React.SFC<Props> = props => {
+  const { requestId, inProgress, errorMsg } = props;
   return (
     <Paper style={{ padding: 20, marginLeft: 20, width: 170 }}>
       <CenteredLabel>{"Transaction status"}</CenteredLabel>
-      {props.requestId === undefined &&
-        props.failureMessage === undefined &&
-        props.inProgress === false && <TransactionEmptyState />}
-      {props.inProgress && <TransactionLoader />}
-      {props.requestId && <Success requestId={props.requestId} />}
+      {requestId === undefined &&
+        errorMsg === undefined &&
+        inProgress === false && <TransactionEmptyState />}
+      {inProgress && <TransactionLoader />}
+      {requestId && <Success requestId={requestId} />}
+      {errorMsg && <Error errorMsg={errorMsg} />}
     </Paper>
   );
 };

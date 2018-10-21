@@ -13,8 +13,8 @@ export declare class RequestNetworkProvider extends React.Component<IProps> {
     createRequestAsAPayer(
       paymentAddress: string,
       amount: string
-    ): Promise<string>;
-    getRequestByAddress(address: string): Promise<IEvent[]>;
+    ): Promise<string | Error>;
+    getRequestByAddress(address: string): Promise<IEvent[] | Error>;
   };
   private initRequestProvider;
   initWeb3(): Promise<void>;

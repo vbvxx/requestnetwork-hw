@@ -22,37 +22,49 @@ interface OwnProps {
 interface State {
   requestId?: string;
   requestPending: boolean;
+  errorMsg?: string;
 }
 type Props = OwnProps & InjectedRequestProps;
 
 class Employer extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      requestId: undefined,
-      requestPending: false
-    };
-  }
+  state = {
+    requestId: undefined,
+    requestPending: false,
+    errorMsg: undefined
+  };
 
   onTransactionSubmit = async (values: FormValues) => {
     const { createRequestAsAPayer } = this.props.requestProps;
-    this.setState({ requestId: undefined, requestPending: true });
-    const requestId = await createRequestAsAPayer(
-      values.address,
-      values.amount
-    );
     this.setState({
-      requestId: requestId,
-      requestPending: false
+      requestId: undefined,
+      requestPending: true,
+      errorMsg: undefined
     });
+    try {
+      const requestId = await createRequestAsAPayer(
+        values.address,
+        values.amount
+      );
+      this.setState({
+        requestId: requestId as string,
+        requestPending: false
+      });
+    } catch (err) {
+      const errorMsg = `The following error happened ${err.message}`;
+      this.setState({ requestPending: false, errorMsg: errorMsg });
+    }
   };
 
   render() {
-    const { requestPending, requestId } = this.state;
+    const { requestPending, requestId, errorMsg } = this.state;
     return (
       <EmployerContainer>
         <EmployerForm onSubmit={this.onTransactionSubmit} />
-        <TransactionInfo inProgress={requestPending} requestId={requestId} />
+        <TransactionInfo
+          inProgress={requestPending}
+          requestId={requestId}
+          errorMsg={errorMsg}
+        />
       </EmployerContainer>
     );
   }

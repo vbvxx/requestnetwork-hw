@@ -12,6 +12,7 @@ import Info from "./Info";
 interface Props {
   requestsArray: IEvent[];
   isFetching: boolean;
+  errorMessage?: string;
 }
 
 const ResultsTable = (props: Props) => {
@@ -21,7 +22,7 @@ const ResultsTable = (props: Props) => {
         padding: 20,
         marginLeft: 20,
         maxHeight: 700,
-        overflowY: "scroll" 
+        overflowY: "scroll"
       }}
     >
       <Column>

@@ -31,31 +31,39 @@ class RequestNetworkProvider extends React.Component {
 
   createRequestAsAPayer = async (paymentAddress, amount) => {
     const amountWei = Web3.utils.toWei(amount);
-    const { request } = await this.state.requestNetwork.createRequest(
-      Types.Role.Payer,
-      Types.Currency.ETH,
-      [
+    try {
+      const { request } = await this.state.requestNetwork.createRequest(
+        Types.Role.Payer,
+        Types.Currency.ETH,
+        [
+          {
+            idAddress: paymentAddress,
+            paymentAddress: paymentAddress,
+            expectedAmount: amountWei,
+            amountToPayAtCreation: amountWei
+          }
+        ],
         {
-          idAddress: paymentAddress,
-          paymentAddress: paymentAddress,
-          expectedAmount: amountWei,
-          amountToPayAtCreation: amountWei
-        }
-      ],
-      {
-        idAddress: this.state.currentAccount,
-        refundAddress: this.state.currentAccount
-      },
-      { gasPrice: "300000000000000" }
-    );
-    return request.requestId;
+          idAddress: this.state.currentAccount,
+          refundAddress: this.state.currentAccount
+        },
+        { gasPrice: "300000000000000" }
+      );
+      return request.requestId;
+    } catch (err) {
+      throw err;
+    }
   };
 
   getRequestByAddress = async address => {
-    const requests = await this.state.requestNetwork.requestCoreService.getRequestsByAddress(
-      address
-    );
-    return requests.asPayee;
+    try {
+      const requests = await this.state.requestNetwork.requestCoreService.getRequestsByAddress(
+        address
+      );
+      return requests.asPayee;
+    } catch (err) {
+      throw err;
+    }
   };
 
   initRequestProvider(web3, networkId, network) {

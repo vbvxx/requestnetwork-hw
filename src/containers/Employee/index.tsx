@@ -1,7 +1,5 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
-import { ColumnCenter } from "src/components/ColumnCenter";
-import { PageTitle } from "src/components/PageTitle";
 import EmployeeForm, { EmployeeFormValues } from "./EmployeeForm";
 import {
   InjectedRequestProps,
@@ -9,6 +7,8 @@ import {
 } from "../RequestNetwork/withRequest";
 import { IEvent } from "../RequestNetwork";
 import ResultsTable from "./ResultsTable";
+import styled from "styled-components";
+import { Row } from "src/components/Row";
 
 interface OwnProps {
   routeProps: RouteComponentProps;
@@ -18,6 +18,13 @@ interface State {
   requestsArray: IEvent[];
   isFetching: boolean;
 }
+
+const EmployeeContainer = styled(Row)`
+  align-items: left;
+  justify-content: center;
+  width: 100%;
+  padding: 40px;
+`;
 
 class Employee extends React.Component<Props, State> {
   state = { requestsArray: [], isFetching: false };
@@ -33,11 +40,10 @@ class Employee extends React.Component<Props, State> {
   render() {
     const { isFetching, requestsArray } = this.state;
     return (
-      <ColumnCenter>
-        <PageTitle>Employee</PageTitle>
+      <EmployeeContainer>
         <EmployeeForm onSubmit={this.onSubmit} />
         <ResultsTable requestsArray={requestsArray} isFetching={isFetching} />
-      </ColumnCenter>
+      </EmployeeContainer>
     );
   }
 }

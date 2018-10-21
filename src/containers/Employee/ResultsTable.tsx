@@ -28,8 +28,8 @@ const ResultsTable = (props: Props) => {
   const loader = props.isFetching ? <Loader /> : undefined;
 
   return (
-    <Paper style={{ padding: 20, marginTop: 40 }}>
-      <Table style={{ minWidth: 700 }}>
+    <Paper style={{ padding: 20, marginLeft: 20 }}>
+      <Table style={{ minWidth: 700, maxHeight: 700 }}>
         <TableHead>
           <TableRow>
             <TableCell>Request Id</TableCell>

@@ -21,7 +21,7 @@ const InnerForm: React.SFC<
   InjectedFormikProps<FormProps, EmployeeFormValues>
 > = props => {
   return (
-    <Paper style={{ padding: "20px" }}>
+    <Paper style={{ padding: "20px", height: 185 }}>
       <FormContainer onSubmit={props.handleSubmit}>
         <FormLabel>Check my payslips</FormLabel>
         <Field

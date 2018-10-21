@@ -1,12 +1,11 @@
-import { InjectedFormikProps, withFormik } from "formik";
+import { InjectedFormikProps, withFormik, Field } from "formik";
 import * as React from "react";
 import * as Yup from "yup";
 //@ts-ignore
 import * as Web3 from "web3";
 import { FormContainer } from "src/components/FormContainer";
 import { FormLabel } from "src/components/FormLabel";
-import { Input } from "src/components/Input";
-import { Text } from "src/components/Text";
+import { FormikMaterialUITextField } from "src/components/Input";
 import { FormRaisedButton } from "src/components/FormButton";
 import { Paper } from "@material-ui/core";
 
@@ -25,24 +24,12 @@ const InnerForm: React.SFC<
     <Paper style={{ padding: "20px" }}>
       <FormContainer onSubmit={props.handleSubmit}>
         <FormLabel>Check my payslips</FormLabel>
-        <FormLabel>
-          <Input
-            id="address"
-            placeholder="Your Ethereum address"
-            type="text"
-            onChange={props.handleChange}
-            value={props.values.address}
-            border={
-              props.touched.address
-                ? props.errors.address && "1px solid red"
-                : undefined
-            }
-          />
-          {props.touched.address &&
-            props.errors.address && (
-              <Text color="red">{props.errors.address}</Text>
-            )}
-        </FormLabel>
+        <Field
+          name="address"
+          type="text"
+          label="Your Ethereum address"
+          component={FormikMaterialUITextField}
+        />
         <FormRaisedButton type="submit" disabled={props.isSubmitting}>
           Submit
         </FormRaisedButton>

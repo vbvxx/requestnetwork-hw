@@ -7,7 +7,7 @@ import {
   List,
   ListItem
 } from "@material-ui/core";
-import { SubtitleLabel } from "src/components/SubtitleLabel";
+import { SubtitleLabel } from "src/components/ButtonLabel";
 import { routePathToTitle } from "../ContainerUtils";
 import { RoutePath } from "../Routes";
 import { ButtonLink } from "src/components/ButtonLink";

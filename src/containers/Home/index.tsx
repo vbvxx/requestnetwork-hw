@@ -5,7 +5,7 @@ import { RoutePath } from "../Routes";
 import { ColumnCenter } from "src/components/ColumnCenter";
 import { PageTitle } from "src/components/PageTitle";
 import { RowCenter } from "src/components/RowCenter";
-import { SubtitleLabel } from "src/components/SubtitleLabel";
+import { SubtitleLabel } from "src/components/ButtonLabel";
 import { pathToTitle } from "../ContainerUtils";
 
 interface OwnProps {

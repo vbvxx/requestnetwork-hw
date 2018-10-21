@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FormLabel = styled.label`
+export const Label = styled.label`
   display: flex;
   flex-direction: column;
   color: #777;

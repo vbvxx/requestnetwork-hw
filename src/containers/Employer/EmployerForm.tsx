@@ -4,7 +4,7 @@ import * as Yup from "yup";
 //@ts-ignore
 import * as Web3 from "web3";
 import { FormContainer } from "src/components/FormContainer";
-import { FormLabel } from "src/components/FormLabel";
+import { Label } from "src/components/Label";
 import { FormikMaterialUITextField } from "src/components/Input";
 import { FormRaisedButton } from "src/components/FormButton";
 import { Paper } from "@material-ui/core";
@@ -24,7 +24,7 @@ const InnerForm: React.SFC<
   return (
     <Paper style={{ padding: 20 }}>
       <FormContainer onSubmit={props.handleSubmit}>
-        <FormLabel>Create a pay slip</FormLabel>
+        <Label>Create a pay slip</Label>
         <Field
           name="address"
           type="text"

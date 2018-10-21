@@ -10,6 +10,13 @@ import ResultsTable from "./ResultsTable";
 import styled from "styled-components";
 import { Row } from "src/components/Row";
 
+const EmployeeContainer = styled(Row)`
+  align-items: left;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+`;
+
 interface OwnProps {
   routeProps: RouteComponentProps;
 }
@@ -18,13 +25,6 @@ interface State {
   requestsArray: IEvent[];
   isFetching: boolean;
 }
-
-const EmployeeContainer = styled(Row)`
-  align-items: left;
-  justify-content: center;
-  width: 100%;
-  padding: 40px;
-`;
 
 class Employee extends React.Component<Props, State> {
   state = { requestsArray: [], isFetching: false };

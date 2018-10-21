@@ -7,8 +7,16 @@ import { RouteComponentProps } from "react-router";
 import { Success } from "./Success";
 import EmployerForm, { FormValues } from "./EmployerForm";
 import { Loader } from "src/components/Loader";
-import { ColumnCenter } from "src/components/ColumnCenter";
-import { PageTitle } from "src/components/PageTitle";
+import styled from "styled-components";
+import { Row } from "src/components/Row";
+import { TransactionInfo } from "./TransactionInfo";
+
+const EmployerContainer = styled(Row)`
+  align-items: left;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+`;
 
 interface OwnProps {
   routeProps: RouteComponentProps;

@@ -5,7 +5,7 @@ export const FormLabel = styled.label`
   flex-direction: column;
   color: #777;
   font-family: "Raleway", sans-serif;
-  font-size: 0.8em;
-  margin: 0.5em 0;
+  font-size: 1.2em;
+  margin: 0.8em 0;
   position: relative;
 `;

@@ -8,6 +8,8 @@ import Paper from "@material-ui/core/Paper";
 import { IEvent } from "../RequestNetwork";
 import { Column } from "src/components/Column";
 import Info from "./Info";
+//@ts-ignore
+import moment from "moment";
 
 interface Props {
   requestsArray: IEvent[];
@@ -39,7 +41,7 @@ const ResultsTable = (props: Props) => {
                 <TableRow key={request.requestId}>
                   <TableCell>{request.requestId}</TableCell>
                   <TableCell style={{ width: 80 }}>
-                    {request._meta.timestamp}
+                    {moment(request._meta.timestamp).format("LLLL")}
                   </TableCell>
                 </TableRow>
               );

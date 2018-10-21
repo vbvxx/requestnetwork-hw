@@ -41,7 +41,7 @@ class Employee extends React.Component<Props, State> {
         isFetching: false
       });
     } catch (err) {
-      const errorMsg = `The following error happened ${err}`;
+      const errorMsg = `The following error happened: ${err}`;
       this.setState({ isFetching: false, errorMsg: errorMsg });
     }
   };

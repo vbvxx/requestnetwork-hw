@@ -50,7 +50,7 @@ class Employer extends React.Component<Props, State> {
         requestPending: false
       });
     } catch (err) {
-      const errorMsg = `The following error happened ${err.message}`;
+      const errorMsg = `The following error happened: ${err.message}`;
       this.setState({ requestPending: false, errorMsg: errorMsg });
     }
   };

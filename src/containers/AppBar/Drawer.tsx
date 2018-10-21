@@ -7,7 +7,7 @@ import {
   List,
   ListItem
 } from "@material-ui/core";
-import { DrawerLabel } from "src/components/DrawerLabel";
+import { SubtitleLabel } from "src/components/SubtitleLabel";
 import { routePathToTitle } from "../ContainerUtils";
 import { RoutePath } from "../Routes";
 import { ButtonLink } from "src/components/ButtonLink";
@@ -40,7 +40,7 @@ class SwipeableTemporaryDrawer extends React.Component<Props> {
         {[RoutePath.Home, RoutePath.Employer, RoutePath.Employee].map(path => (
           <ListItem key={path} className={classes.listItem}>
             <ButtonLink path={path} onClick={this.props.onClose}>
-              <DrawerLabel text={routePathToTitle(path)} />
+              <SubtitleLabel text={routePathToTitle(path)} />
             </ButtonLink>
           </ListItem>
         ))}

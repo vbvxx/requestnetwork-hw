@@ -5,6 +5,8 @@ import { RoutePath } from "../Routes";
 import { ColumnCenter } from "src/components/ColumnCenter";
 import { PageTitle } from "src/components/PageTitle";
 import { RowCenter } from "src/components/RowCenter";
+import { SubtitleLabel } from "src/components/SubtitleLabel";
+import { pathToTitle } from "../ContainerUtils";
 
 interface OwnProps {
   routeProps: RouteComponentProps;
@@ -15,8 +17,12 @@ const Home: React.SFC<Props> = props => (
   <ColumnCenter>
     <PageTitle>Welcome</PageTitle>
     <RowCenter>
-      <OutlinedButtonLink path={RoutePath.Employer} name="Employer" />
-      <OutlinedButtonLink path={RoutePath.Employee} name="Employee" />
+      <OutlinedButtonLink path={RoutePath.Employer} style={{ margin: 50 }}>
+        <SubtitleLabel text={pathToTitle(RoutePath.Employer)} />
+      </OutlinedButtonLink>
+      <OutlinedButtonLink path={RoutePath.Employee} style={{ margin: 50 }}>
+        <SubtitleLabel text={pathToTitle(RoutePath.Employee)} />
+      </OutlinedButtonLink>
     </RowCenter>
   </ColumnCenter>
 );

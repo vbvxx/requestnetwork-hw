@@ -5,7 +5,6 @@
   "dependencies": {
     "@material-ui/core": "^3.2.0",
     "@material-ui/icons": "^3.0.1",
-    "@requestnetwork/react-components": "^0.3.2",
     "@requestnetwork/request-network.js": "^0.9.0",
     "@types/react-router-dom": "^4.3.1",
     "@types/styled-components": "^4.0.1",
@@ -17,7 +16,6 @@
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "3.1.0",
     "styled-components": "^4.0.2",
-    "utility-types": "^2.1.0",
     "web3": "^1.0.0-beta.36",
     "yup": "^0.26.6"
   },

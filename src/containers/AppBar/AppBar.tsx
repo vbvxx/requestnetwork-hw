@@ -13,11 +13,7 @@ import SwipeableTemporaryDrawer from "./Drawer";
 interface IState {
   drawerOpen: boolean;
 }
-interface IOwnProps {}
-type Props = AppBarProps &
-  IOwnProps &
-  WithStyles<typeof styles> &
-  RouteComponentProps;
+type Props = AppBarProps & WithStyles<typeof styles> & RouteComponentProps;
 
 class CustomAppBar extends React.Component<Props, IState> {
   state = { drawerOpen: false };

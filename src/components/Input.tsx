@@ -6,7 +6,7 @@ import { FieldProps, getIn } from "formik";
 import * as React from "react";
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-export interface TextFieldProps
+export interface ITextFieldProps
   extends FieldProps,
     Omit<MuiTextFieldProps, "error" | "name" | "onChange" | "value"> {}
 
@@ -15,7 +15,7 @@ export const fieldToTextField = ({
   form,
   disabled = false,
   ...props
-}: TextFieldProps): MuiTextFieldProps => {
+}: ITextFieldProps): MuiTextFieldProps => {
   const { name } = field;
   const { touched, errors, isSubmitting } = form;
 
@@ -32,8 +32,8 @@ export const fieldToTextField = ({
   };
 };
 
-export const FormikMaterialUITextField: React.ComponentType<TextFieldProps> = (
-  props: TextFieldProps
+export const FormikMaterialUITextField: React.ComponentType<ITextFieldProps> = (
+  props: ITextFieldProps
 ) => (
   <MuiTextField
     {...fieldToTextField(props)}

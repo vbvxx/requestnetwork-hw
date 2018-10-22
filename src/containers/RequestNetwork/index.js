@@ -2,10 +2,10 @@ import * as React from "react";
 import RequestNetworkProvider from "./Provider";
 
 const ctx = React.createContext({
+  currentAccount: "",
+  currentNetwork: "",
   isReady: false,
   networkMismatch: false,
-  currentNetwork: "",
-  currentAccount: "",
   requestNetwork: undefined
 });
 export const Consumer = ctx.Consumer;

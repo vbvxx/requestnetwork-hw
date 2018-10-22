@@ -7,7 +7,7 @@ import { Loader } from "src/components/Loader";
 import { Text } from "src/components/Text";
 import styled from "styled-components";
 
-interface Props {
+interface IProps {
   inProgress: boolean;
   requestId?: string;
   errorMsg?: string;
@@ -17,7 +17,7 @@ const CenteredLabel = styled(Label)`
   text-align: center;
 `;
 
-export const TransactionInfo: React.SFC<Props> = props => {
+export const TransactionInfo: React.SFC<IProps> = props => {
   const { requestId, inProgress, errorMsg } = props;
   // TODO: use withStyles
   return (

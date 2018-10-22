@@ -7,9 +7,9 @@ export const FormRaisedButton = (props: ButtonProps) => (
     variant="outlined"
     color="primary"
     style={{
-      width: "100%",
+      marginBottom: "16px",
       marginTop: "10px",
-      marginBottom: "16px"
+      width: "100%"
     }}
     {...props}
   >

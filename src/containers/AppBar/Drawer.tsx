@@ -22,14 +22,15 @@ const styles = createStyles({
   }
 });
 
-interface OwnProps {
+interface IOwnProps {
   open: boolean;
   onClose: () => void;
 }
 
-type Props = OwnProps & WithStyles<typeof styles>;
+type Props = IOwnProps & WithStyles<typeof styles>;
 
 class SwipeableTemporaryDrawer extends React.Component<Props> {
+  // tslint:disable-next-line:no-empty
   onOpen = () => {};
 
   render() {

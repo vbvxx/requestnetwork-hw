@@ -25,8 +25,8 @@ const networkId = getNetwork(NETWORK_NAME);
 
 class RequestNetworkProvider extends React.Component {
   state = {
-    requestNetwork: undefined,
-    currentAccount: ""
+    currentAccount: "",
+    requestNetwork: undefined
   };
 
   createRequestAsAPayer = async (paymentAddress, amount) => {
@@ -70,11 +70,11 @@ class RequestNetworkProvider extends React.Component {
     import("@requestnetwork/request-network.js")
       .then(RequestNetwork => {
         return this.setState({
+          currentNetwork: network,
           requestNetwork: new RequestNetwork.default(
             web3.currentProvider,
             networkId
-          ),
-          currentNetwork: network
+          )
         });
       })
       .catch(e => console.error(e));
@@ -127,13 +127,12 @@ class RequestNetworkProvider extends React.Component {
     return (
       <Provider
         value={{
-          requestNetwork: requestNetwork,
-          isReady: true,
-          currentNetwork: currentNetwork,
-          currentAccount: currentAccount,
-          networkMismatch: NETWORK_NAME === currentNetwork,
           createRequestAsAPayer: this.createRequestAsAPayer,
-          getRequestByAddress: this.getRequestByAddress
+          currentAccount: currentAccount,
+          currentNetwork: currentNetwork,
+          getRequestByAddress: this.getRequestByAddress,
+          isReady: true,
+          networkMismatch: NETWORK_NAME === currentNetwork
         }}
       >
         {this.props.children}

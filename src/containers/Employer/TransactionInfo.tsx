@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Loader } from "src/components/Loader";
-import { Text } from "src/components/Text";
 import { Paper } from "@material-ui/core";
-import { Label } from "src/components/Label";
-import styled from "styled-components";
+import * as React from "react";
 import { Column } from "src/components/Column";
 import { Error } from "src/components/Error";
+import { Label } from "src/components/Label";
+import { Loader } from "src/components/Loader";
+import { Text } from "src/components/Text";
+import styled from "styled-components";
 
 interface Props {
   inProgress: boolean;
@@ -19,6 +19,7 @@ const CenteredLabel = styled(Label)`
 
 export const TransactionInfo: React.SFC<Props> = props => {
   const { requestId, inProgress, errorMsg } = props;
+  // TODO: use withStyles
   return (
     <Paper style={{ padding: 20, marginLeft: 20, width: 170 }}>
       <CenteredLabel>{"Transaction status"}</CenteredLabel>
@@ -36,7 +37,7 @@ const TransactionLoaderContainer = styled(Column)`
   align-items: center;
 `;
 
-const TransactionLoader: React.SFC<{}> = props => {
+const TransactionLoader = () => {
   return (
     <TransactionLoaderContainer>
       <Text>Transaction in progress</Text>
@@ -45,7 +46,7 @@ const TransactionLoader: React.SFC<{}> = props => {
   );
 };
 
-const TransactionEmptyState: React.SFC<{}> = props => {
+const TransactionEmptyState = () => {
   return (
     <React.Fragment>
       <Text>Create a new payslip to initiate a transaction.</Text>

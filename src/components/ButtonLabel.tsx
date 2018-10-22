@@ -1,11 +1,11 @@
-import * as React from "react";
 import { Typography } from "@material-ui/core";
+import * as React from "react";
 
-interface Props {
+interface IProps {
   text: string;
   color?: string;
 }
-export const SubtitleLabel: React.SFC<Props> = props => (
+export const SubtitleLabel: React.SFC<IProps> = props => (
   <Typography
     variant="subtitle1"
     color="inherit"

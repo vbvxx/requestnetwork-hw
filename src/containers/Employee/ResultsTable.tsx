@@ -1,30 +1,31 @@
-import * as React from "react";
+import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import { IEvent } from "../RequestNetwork";
-import { Column } from "src/components/Column";
-import Info from "./Info";
-//@ts-ignore
+// @ts-ignore
 import moment from "moment";
+import * as React from "react";
+import { Column } from "src/components/Column";
+import { IEvent } from "../RequestNetwork";
+import Info from "./Info";
 
-interface Props {
+interface IProps {
   requestsArray: IEvent[];
   isFetching: boolean;
   errorMessage?: string;
 }
 
-const ResultsTable = (props: Props) => {
+const ResultsTable = (props: IProps) => {
+  // TODO: Use withStyles
   return (
     <Paper
       style={{
-        padding: 20,
         marginLeft: 20,
         maxHeight: 700,
-        overflowY: "scroll"
+        overflowY: "scroll",
+        padding: 20
       }}
     >
       <Column>

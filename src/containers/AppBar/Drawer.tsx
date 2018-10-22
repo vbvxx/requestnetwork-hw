@@ -1,21 +1,21 @@
-import * as React from "react";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import {
-  withStyles,
   createStyles,
-  WithStyles,
   List,
-  ListItem
+  ListItem,
+  withStyles,
+  WithStyles
 } from "@material-ui/core";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import * as React from "react";
 import { SubtitleLabel } from "src/components/ButtonLabel";
+import { ButtonLink } from "src/components/ButtonLink";
 import { routePathToTitle } from "../ContainerUtils";
 import { RoutePath } from "../Routes";
-import { ButtonLink } from "src/components/ButtonLink";
 
 const styles = createStyles({
   list: {
-    width: 250,
-    padding: 0
+    padding: 0,
+    width: 250
   },
   listItem: {
     padding: 0

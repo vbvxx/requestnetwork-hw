@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Route } from "react-router";
-import Home from "./Home";
-import Employer from "./Employer";
-import Employee from "./Employee";
 import AppBar from "./AppBar/AppBar";
+import Employee from "./Employee";
+import Employer from "./Employer";
+import Home from "./Home";
 
 export enum RoutePath {
   Home = "/",

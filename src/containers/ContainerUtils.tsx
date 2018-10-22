@@ -7,10 +7,6 @@ export const toTitleCase = (element: string): string => {
     .join(" ");
 };
 
-export const pathToTitle = (element: string): string => {
-  return toTitleCase(element.replace("/", ""));
-};
-
 export const routePathToTitle = (route: RoutePath): string => {
   switch (route) {
     case RoutePath.Home:

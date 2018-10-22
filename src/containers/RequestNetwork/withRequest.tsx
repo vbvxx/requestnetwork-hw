@@ -1,5 +1,5 @@
-import { Consumer, RequestContextValues } from "./index";
 import * as React from "react";
+import { Consumer, RequestContextValues } from "./index";
 
 export interface InjectedRequestProps {
   requestProps: RequestContextValues;
@@ -13,6 +13,7 @@ export function withRequest<
 >(
   Component: React.ComponentClass<P> | React.StatelessComponent<P>
 ): React.SFC<R> {
+  // tslint:disable-next-line:no-shadowed-variable
   return function withRequest(props: R) {
     return (
       <Consumer>

@@ -1,7 +1,7 @@
-import * as React from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { ColumnCenter } from "./ColumnCenter";
+import * as React from "react";
 import styled from "styled-components";
+import { ColumnCenter } from "./ColumnCenter";
 
 const CenterMargin = styled(ColumnCenter)`
   margin: 20px;

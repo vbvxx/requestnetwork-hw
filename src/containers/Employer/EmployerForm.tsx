@@ -1,26 +1,27 @@
-import { InjectedFormikProps, withFormik, Field } from "formik";
-import * as React from "react";
-import * as Yup from "yup";
-//@ts-ignore
-import * as Web3 from "web3";
-import { FormContainer } from "src/components/FormContainer";
-import { Label } from "src/components/Label";
-import { FormikMaterialUITextField } from "src/components/Input";
-import { FormRaisedButton } from "src/components/FormButton";
 import { Paper } from "@material-ui/core";
+import { Field, InjectedFormikProps, withFormik } from "formik";
+import * as React from "react";
+import { FormRaisedButton } from "src/components/FormButton";
+import { FormContainer } from "src/components/FormContainer";
+import { FormikMaterialUITextField } from "src/components/Input";
+import { Label } from "src/components/Label";
+// @ts-ignore
+import * as Web3 from "web3";
+import * as Yup from "yup";
 
-export interface FormValues {
+export interface IFormValues {
   address: string;
   amount: string;
 }
 
-interface FormProps {
-  onSubmit: (values: FormValues) => Promise<void>;
+interface IFormProps {
+  onSubmit: (values: IFormValues) => Promise<void>;
 }
 
 const InnerForm: React.SFC<
-  InjectedFormikProps<FormProps, FormValues>
+  InjectedFormikProps<IFormProps, IFormValues>
 > = props => {
+  // TODO: Use withStyles
   return (
     <Paper style={{ padding: 20 }}>
       <FormContainer onSubmit={props.handleSubmit}>
@@ -45,28 +46,26 @@ const InnerForm: React.SFC<
   );
 };
 
-const EmployerForm = withFormik<FormProps, FormValues>({
-  mapPropsToValues: () => ({ address: "", amount: "" }),
-  validationSchema: Yup.object().shape({
-    address: Yup.string().test(
-      "ethreumValidAddress",
-      "Invalid eth address",
-      function(value) {
-        return Web3.utils.isAddress(value);
-      }
-    ),
-    amount: Yup.string().test("isValidAmount", "Invalid amount", function(
-      value
-    ) {
-      return !Number.isNaN(+value);
-    })
-  }),
+const EmployerForm = withFormik<IFormProps, IFormValues>({
   handleSubmit: (values, bag) => {
     bag.props.onSubmit(values).then(() => {
       bag.setSubmitting(false);
       bag.resetForm({ address: "", amount: "" });
     });
-  }
+  },
+  mapPropsToValues: () => ({ address: "", amount: "" }),
+  validationSchema: Yup.object().shape({
+    address: Yup.string().test(
+      "ethreumValidAddress",
+      "Invalid eth address",
+      value => {
+        return Web3.utils.isAddress(value);
+      }
+    ),
+    amount: Yup.string().test("isValidAmount", "Invalid amount", value => {
+      return !Number.isNaN(+value);
+    })
+  })
 })(InnerForm);
 
 export default EmployerForm;

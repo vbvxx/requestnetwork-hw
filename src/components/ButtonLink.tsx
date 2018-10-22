@@ -1,18 +1,22 @@
+import { Button } from "@material-ui/core";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
 
-interface Props {
+interface IProps {
   path: string;
   onClick?: () => void;
   style?: any;
 }
 
-export const OutlinedButtonLink: React.SFC<Props> = props => {
+export const OutlinedButtonLink: React.SFC<IProps> = props => {
   const path = props.path;
+  // tslint:disable-next-line:no-shadowed-variable
+  const renderComponent = ({ innerRef, ...props }: any) => (
+    <Link {...props} to={path} />
+  );
   return (
     <Button
-      component={({ innerRef, ...props }) => <Link {...props} to={path} />}
+      component={renderComponent}
       variant="outlined"
       color="primary"
       onClick={props.onClick}
@@ -23,11 +27,15 @@ export const OutlinedButtonLink: React.SFC<Props> = props => {
   );
 };
 
-export const ButtonLink: React.SFC<Props> = props => {
+export const ButtonLink: React.SFC<IProps> = props => {
   const path = props.path;
+  // tslint:disable-next-line:no-shadowed-variable
+  const renderComponent = ({ innerRef, ...props }: any) => (
+    <Link {...props} to={path} />
+  );
   return (
     <Button
-      component={({ innerRef, ...props }) => <Link {...props} to={path} />}
+      component={renderComponent}
       color="primary"
       fullWidth={true}
       onClick={props.onClick}

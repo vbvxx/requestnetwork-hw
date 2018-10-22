@@ -1,8 +1,8 @@
 import * as React from "react";
-import styled from "styled-components";
+import { Error } from "src/components/Error";
 import { Loader } from "src/components/Loader";
 import { Text } from "src/components/Text";
-import { Error } from "src/components/Error";
+import styled from "styled-components";
 
 const InfoContainer = styled.div`
   display: flex;
@@ -12,13 +12,13 @@ const InfoContainer = styled.div`
   height: 129px;
 `;
 
-interface Props {
+interface IProps {
   isFetching: boolean;
   isEmpty: boolean;
   errorMsg?: string;
 }
 
-const Info: React.SFC<Props> = props => {
+const Info: React.SFC<IProps> = props => {
   const { isFetching, isEmpty, errorMsg } = props;
   const placeHolder =
     isEmpty && !isFetching ? (

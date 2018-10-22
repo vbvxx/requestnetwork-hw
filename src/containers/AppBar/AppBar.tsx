@@ -1,25 +1,25 @@
-import * as React from "react";
-import { withStyles, createStyles, WithStyles } from "@material-ui/core/styles";
 import AppBar, { AppBarProps } from "@material-ui/core/AppBar";
+import IconButton from "@material-ui/core/IconButton";
+import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { withRouter, RouteComponentProps } from "react-router";
+import * as React from "react";
+import { RouteComponentProps, withRouter } from "react-router";
 import { routePathToTitle } from "../ContainerUtils";
-import SwipeableTemporaryDrawer from "./Drawer";
 import { RoutePath } from "../Routes";
+import SwipeableTemporaryDrawer from "./Drawer";
 
-interface State {
+interface IState {
   drawerOpen: boolean;
 }
-interface OwnProps {}
+interface IOwnProps {}
 type Props = AppBarProps &
-  OwnProps &
+  IOwnProps &
   WithStyles<typeof styles> &
   RouteComponentProps;
 
-class CustomAppBar extends React.Component<Props, State> {
+class CustomAppBar extends React.Component<Props, IState> {
   state = { drawerOpen: false };
 
   toggleDrawer = () => {
@@ -31,7 +31,6 @@ class CustomAppBar extends React.Component<Props, State> {
   };
 
   render() {
-    //TODO: create
     const { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -60,15 +59,15 @@ class CustomAppBar extends React.Component<Props, State> {
 }
 
 const styles = createStyles({
-  root: {
-    flexGrow: 1
-  },
   grow: {
     flexGrow: 1
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20
+  },
+  root: {
+    flexGrow: 1
   }
 });
 

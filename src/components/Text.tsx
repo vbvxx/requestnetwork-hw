@@ -1,10 +1,10 @@
 import styled, { StyledFunction } from "styled-components";
 
-interface AdditionalProps {
+interface IAdditionalProps {
   color?: string;
 }
 const p: StyledFunction<
-  AdditionalProps & React.HTMLProps<HTMLParagraphElement>
+  IAdditionalProps & React.HTMLProps<HTMLParagraphElement>
 > = styled.p;
 
 export const Text = p`

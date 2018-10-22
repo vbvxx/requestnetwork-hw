@@ -1,4 +1,4 @@
-import { Paper, createStyles, withStyles, WithStyles } from "@material-ui/core";
+import { createStyles, Paper, withStyles, WithStyles } from "@material-ui/core";
 import * as React from "react";
 import { Column } from "src/components/Column";
 import { Error } from "src/components/Error";

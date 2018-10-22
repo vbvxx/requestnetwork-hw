@@ -15,8 +15,8 @@ export interface RequestContextValues {
   createRequestAsAPayer(
     paymentAddress: string,
     amount: string
-  ): Promise<string | Error>;
-  getRequestByAddress(address: string): Promise<IEvent[] | Error>;
+  ): Promise<string>;
+  getRequestByAddress(address: string): Promise<IEvent[]>;
 }
 export declare const Provider: React.ComponentType<
     React.ProviderProps<RequestContextValues>

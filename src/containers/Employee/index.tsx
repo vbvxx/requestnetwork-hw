@@ -36,9 +36,12 @@ class Employee extends React.Component<Props, IState> {
       const requestsArray = await this.props.requestProps.getRequestByAddress(
         values.address
       );
+      const sortedRequestsArray = requestsArray.sort(
+        (a, b) => a._meta.timestamp - b._meta.timestamp
+      );
       this.setState({
         isFetching: false,
-        requestsArray: requestsArray as IEvent[]
+        requestsArray: sortedRequestsArray
       });
     } catch (err) {
       const errorMsg = `The following error happened: ${err.message}`;

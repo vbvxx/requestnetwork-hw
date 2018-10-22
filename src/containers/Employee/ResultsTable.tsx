@@ -40,7 +40,7 @@ const ResultsTable = (props: Props) => {
                 <TableRow key={request.requestId}>
                   <TableCell>{request.requestId}</TableCell>
                   <TableCell className={classes.timeStampCell}>
-                    {moment(request._meta.timestamp).format("LLLL")}
+                    {moment(request._meta.timestamp * 1000).format("LLLL")}
                   </TableCell>
                 </TableRow>
               );

@@ -1,3 +1,4 @@
+import { createStyles, withStyles, WithStyles } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -17,23 +18,20 @@ interface IProps {
   errorMessage?: string;
 }
 
-const ResultsTable = (props: IProps) => {
-  // TODO: Use withStyles
+type Props = IProps & WithStyles<typeof styles>;
+
+const ResultsTable = (props: Props) => {
+  const { classes } = props;
   return (
-    <Paper
-      style={{
-        marginLeft: 20,
-        maxHeight: 700,
-        overflowY: "scroll",
-        padding: 20
-      }}
-    >
+    <Paper className={classes.paper}>
       <Column>
-        <Table style={{ minWidth: 700, maxHeight: 700 }}>
+        <Table className={classes.table}>
           <TableHead>
             <TableRow>
               <TableCell>Request Id</TableCell>
-              <TableCell style={{ width: 80 }}>Time stamp</TableCell>
+              <TableCell className={classes.timeStampCell}>
+                Time stamp
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -41,7 +39,7 @@ const ResultsTable = (props: IProps) => {
               return (
                 <TableRow key={request.requestId}>
                   <TableCell>{request.requestId}</TableCell>
-                  <TableCell style={{ width: 80 }}>
+                  <TableCell className={classes.timeStampCell}>
                     {moment(request._meta.timestamp).format("LLLL")}
                   </TableCell>
                 </TableRow>
@@ -58,4 +56,19 @@ const ResultsTable = (props: IProps) => {
   );
 };
 
-export default ResultsTable;
+const styles = createStyles({
+  paper: {
+    marginLeft: 20,
+    maxHeight: 700,
+    overflowY: "scroll",
+    padding: 20
+  },
+  table: {
+    minWidth: 700
+  },
+  timeStampCell: {
+    width: 80
+  }
+});
+
+export default withStyles(styles)(ResultsTable);

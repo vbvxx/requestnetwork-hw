@@ -1,4 +1,4 @@
-import { Paper } from "@material-ui/core";
+import { Paper, createStyles, withStyles, WithStyles } from "@material-ui/core";
 import * as React from "react";
 import { Column } from "src/components/Column";
 import { Error } from "src/components/Error";
@@ -13,15 +13,16 @@ interface IProps {
   errorMsg?: string;
 }
 
+type Props = IProps & WithStyles<typeof styles>;
+
 const CenteredLabel = styled(Label)`
   text-align: center;
 `;
 
-export const TransactionInfo: React.SFC<IProps> = props => {
-  const { requestId, inProgress, errorMsg } = props;
-  // TODO: use withStyles
+const TransactionInfo: React.SFC<Props> = props => {
+  const { requestId, inProgress, errorMsg, classes } = props;
   return (
-    <Paper style={{ padding: 20, marginLeft: 20, width: 170 }}>
+    <Paper className={classes.paper}>
       <CenteredLabel>{"Transaction status"}</CenteredLabel>
       {requestId === undefined &&
         errorMsg === undefined &&
@@ -32,6 +33,16 @@ export const TransactionInfo: React.SFC<IProps> = props => {
     </Paper>
   );
 };
+
+const styles = createStyles({
+  paper: {
+    marginLeft: 20,
+    padding: 20,
+    width: 170
+  }
+});
+
+export default withStyles(styles)(TransactionInfo);
 
 const TransactionLoaderContainer = styled(Column)`
   align-items: center;

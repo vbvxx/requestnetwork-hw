@@ -1,4 +1,4 @@
-import { Paper } from "@material-ui/core";
+import { createStyles, Paper, withStyles, WithStyles } from "@material-ui/core";
 import { Field, InjectedFormikProps, withFormik } from "formik";
 import * as React from "react";
 import { FormRaisedButton } from "src/components/FormButton";
@@ -17,12 +17,14 @@ interface IFormProps {
   onSubmit: (values: IEmployeeFormValues) => Promise<void>;
 }
 
+type Props = IFormProps & WithStyles<typeof styles>;
+
 const InnerForm: React.SFC<
-  InjectedFormikProps<IFormProps, IEmployeeFormValues>
+  InjectedFormikProps<Props, IEmployeeFormValues>
 > = props => {
-  // TODO: Use material ui with classes
+  const { classes } = props;
   return (
-    <Paper style={{ padding: "20px", height: 185 }}>
+    <Paper className={classes.paper}>
       <FormContainer onSubmit={props.handleSubmit}>
         <Label>Check my payslips</Label>
         <Field
@@ -58,4 +60,11 @@ const EmployeeForm = withFormik<IFormProps, IEmployeeFormValues>({
   })
 })(InnerForm);
 
-export default EmployeeForm;
+const styles = createStyles({
+  paper: {
+    height: 185,
+    padding: "20px"
+  }
+});
+
+export default withStyles(styles)(EmployeeForm);

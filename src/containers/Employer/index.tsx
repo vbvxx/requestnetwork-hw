@@ -7,7 +7,7 @@ import {
   withRequest
 } from "../RequestNetwork/withRequest";
 import EmployerForm, { IFormValues } from "./EmployerForm";
-import { TransactionInfo } from "./TransactionInfo";
+import TransactionInfo from "./TransactionInfo";
 
 const EmployerContainer = styled(Row)`
   align-items: left;
